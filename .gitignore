@@ -1,0 +1,10 @@
+# Ignore raw sensitive data files
+source_data/
+
+# Ignore any local environment or virtual env folders
+.env
+venv/
+__pycache__/
+
+# Optional: ignore system files
+.DS_Store

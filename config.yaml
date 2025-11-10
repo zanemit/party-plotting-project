@@ -1,0 +1,25 @@
+# define paths
+data:
+    DATA_FOLDER : "source_data"
+    TOPIC_MAPPING_PATH: "topic_mapping.xlsx"
+    
+
+outputs:
+    3D_PLOT_PATH : "outputs/pca_projection_3d.html"
+    OUTPUT_FOLDER_PATH : "outputs"
+
+colours:
+    JV: "#7ebc5e"
+    NA: "#e4b919"
+    LPV: "#9c454e"
+    PRO: "#d45c4f"
+    ZZS: "#319957"
+    AS: "#e6991c"
+    SV: "#7274a7"
+    ST: "#e07d14"
+    S: "#e5000b"
+    AP: "#ebdf17"
+    LKS: "#e631c2"
+    KK: "#2aa28f"
+    R: "#b3b3b3"
+    K: "#404464"
