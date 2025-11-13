@@ -1,5 +1,5 @@
 import yaml
-from scripts.preprocess_data import load_and_clean_data, encode_answers
+from scripts.preprocess_data import load_and_clean_data
 from scripts.pca_analysis import perform_pca
 from scripts.plot_pca_projection_3d import plot_pca_3d
 from scripts.plot_pc_loading_heatmap import pc_loading_heatmap
@@ -8,14 +8,14 @@ from scripts.plot_pc_loading_heatmap import pc_loading_heatmap
 with open("config.yaml") as f:
     config = yaml.safe_load(f)
 
-df_comb = load_and_clean_data(config['data']['DATA_FOLDER'])
-df_encoded = encode_answers(df_comb)
+df_encoded = load_and_clean_data(config)
 
 # map questions to topics
 import pandas as pd
 topic_table = pd.read_excel(config['data']['TOPIC_MAPPING_PATH'])
-mapping = dict(zip(topic_table['jautājums'], topic_table['tēma']))
-df_encoded = df_encoded.rename(columns=mapping)
+if not topic_table['tēma'].isna().sum()==topic_table.shape[0]: # all are nans
+    mapping = dict(zip(topic_table['jautājums'], topic_table['tēma']))
+    df_encoded = df_encoded.rename(columns=mapping)
 
 # PCA
 pca_df, loadings, variance_ratios = perform_pca(df_encoded)
@@ -45,8 +45,9 @@ html_content = f"""
 </head>
     <body>
     <div style="width: 60%; margin: auto;">
+        <p><b>NB:</b> 12/11/2025 optimizējot datu izguves procesu no lsm.lv, atklāta kļūda sākotnēji izmantotajos partijas "Konservatīvie" datos. Pēc kļūdas labojuma pirmās trīs galveno komponentu asis izskaidro 59% variācijas, un partijas "Konservatīvie" atbilžu projekcija šajās asīs ir tuvāka AS, ZZS, NA, nevis LPV, KK.</p>
         <h1>Partiju atbildes 2022.gada partiju šķirotavā</h1>
-        <p>No 19 partijām, kas kandidēja 2022.gada vēlēšanās, uz LSM.lv sagatavotajiem 58 jautājumiem atbildēja 13 partijas.<br>Zemāk atainota partiju atbilžu projekcija pirmo trīs galveno komponentu (<i>principal component</i>, "PC") asīs, kas kopīgi paskaidro 67% no variācijas partiju atbildēs.</p>
+        <p>No 19 partijām, kas kandidēja 2022.gada vēlēšanās, uz LSM.lv sagatavotajiem 58 jautājumiem atbildēja 13 partijas.<br>Zemāk atainota partiju atbilžu projekcija pirmo trīs galveno komponentu (<i>principal component</i>, "PC") asīs, kas kopīgi paskaidro 59% no variācijas partiju atbildēs.</p>
         
         <!-- Plotly 3D plot -->
         {plotly_html_snippet}   
@@ -62,62 +63,56 @@ html_content = f"""
             {heatmap_html_snippet} 
         </div>
 
-        <p><b>PC1</b>: Partijas atrašanās vietu uz šīs ass visbūtiskāk ietekmē atbildes uz jautājumiem par (1) Latvijas lomu globālu problēmu risināšanā, (2) uzturēšanās atļaujām trešo valstu investoriem, (3) valsts atbalstu AirBaltic, (4) obligāto militāro dienestu, kā arī (5) attieksmi pret bioloģisko un konvencionālo lauksaimniecību.</p>
+        <p><b>PC1</b>: Partijas atrašanās vietu uz šīs ass visbūtiskāk ietekmē atbildes uz jautājumiem par (1) valsts atbalstu AirBaltic, (2) uzturēšanās atļaujām trešo valstu investoriem, (3) okupekļa nojaukšanu, (4) Latvijas lomu globālu problēmu risināšanā, kā arī (5) attieksmi pret bioloģisko un konvencionālo lauksaimniecību.</p>
 
-        <p> Pozitīvo skaitļu (JV, NA, AP, PRO) virzienu visvairāk veicina šādas idejas:
+        <p> Pozitīvo skaitļu (SV, ST, LPV, LKS, KK) virzienu visvairāk veicina šādas idejas:
             <ul>
-                <li>Latvijai <b>ir</b> vairāk jāiesaistās globālu (visu planētu skarošu) problēmu risināšanā;</li>
-                <li>Latvijai <b>nav</b> vajadzīga programma, kas ļauj ārvalstu pilsoņiem iegūt uzturēšanās atļauju Latvijā tad, ja viņi investē Latvijas ekonomikā;</li>
-                <li>Latvijas valdības līdzšinējais finansiālais atbalsts lidsabiedrībai "airBaltic" <b>nav</b> bijis pārmērīgs;</li>
-                <li>Latvijā <b>ir</b> jāievieš obligātais militārais (valsts aizsardzības) dienests;</li>
+                <li>Latvijas valdības līdzšinējais finansiālais atbalsts lidsabiedrībai "airBaltic" <b>ir</b> bijis pārmērīgs;</li>
+                <li>Latvijai <b>ir</b> vajadzīga programma, kas ļauj ārvalstu pilsoņiem iegūt uzturēšanās atļauju Latvijā tad, ja viņi investē Latvijas ekonomikā;</li>
+                <li><b>Nav</b> jānojauc piemineklis Rīgā, Uzvaras parkā;</li>
+                <li>Latvijai <b>nav</b> vairāk jāiesaistās globālu (visu planētu skarošu) problēmu risināšanā;</li>
                 <li>Bioloģiskajai (organiskajai) lauksaimniecībai <b>ir</b> jāsniedz lielāks atbalsts nekā konvencionālajai (parastajai) lauksaimniecībai.</li>
             </ul>
-            Pozitīvos skaitļos redzam arī NA, AS, ZZS. Vistālāk negatīvo skaitļu virzienā ir krieviju atbalstošākie spēki (ST, SV, LKS), bet negatīvi skaitļi ir arī LPV, toreizējai Gobzema partijai un partijai Konservatīvie.
+            Vispretējākos viedokļus šiem paudušas redzam arī JV, NA un Konservatīvie. Negatīvos skaitļos redzam arī AP, PRO, AS un ZZS.
 
             <img src="outputs/3d_saved_PC1.png" alt="View from PC1 side" 
                 style="display:block; margin:auto; width:80%; max-width:800px;">
         </p>
 
-        <p><b>PC2</b>: Šo asi ietekmē ļoti raibs jautājumu spektrs. Daļa nozīmīgo jautājumu ir saistīta ar valsts attieksmi pret krievijas karu Ukrainā un valsts aizsardzību, bet relatīvi liels svars ir arī jautājumiem par pirotehnikas lietošanu privātos pasākumos, mežu izciršanu un nepieciešamību ieviest obligātu vidusskolas eksāmenu dabaszinībās.</p>
+        <p><b>PC2</b>: Šo asi visvairāk ietekmē jautājumi par cilvēktiesībām, tiesiskumu un attieksmi pret Eiropas Savienību, taču būtiski ir arī saimnieciski jautājumi, kā pašvaldību ienākuma  nodokļa piesaistīšana darba vietai.</p>
 
-         <p> Pozitīvo skaitļu (LPV, Konservatīvo, Gobzema partijas) virzienu visvairāk veicina šādas idejas:
+        <p> Pozitīvo skaitļu (LPV, Konservatīvo, ZZS) virzienu visvairāk veicina šādas idejas:
             <ul>
-                <li>Pirotehnikas lietošana privātos pasākumos <b>ir</b> jāaizliedz;</li>
-                <li>Skolēniem skolās <b>ir</b> jāapgūst ieroču lietošanas prasmes;</li>
-                <li>Par krievijas naftas sajaukšanu ar citas izcelsmes naftu, lai apietu pret krieviju noteiktās sankcijas, uzņēmumiem <b>ir</b> jānosaka bargāki sodi;</li>
-                <li>Latvijā <b>ir</b> nepieciešams palielināt NATO spēku klātbūtni;</li>
-                <li>Latvijai <b>ir</b> jānosoda nopietni cilvēktiesību un tiesiskuma pārkāpumi, kas notiek citās Eiropas Savienības valstīs;</li>
-                <li>Lai tuvākajos gados veicinātu uzņēmējdarbību un veidotu jaunas darba vietas, plašāka Latvijas mežu izciršana <b>ir</b> attaisnojama;</li>
-                <li>Pret Krieviju un Baltkrieviju noteiktās sankcijas <b>nav</b> jāsamazina;</li>
-                <li>Obligāts vidusskolas eksāmens dabaszinātnēs <b>ir</b> jāievieš;</li>
-                <li>Enerģijas cenu palielinājuma kompensēšanas pabalsti <b>būtu</b> jāizmaksā visiem Latvijas iedzīvotājiem, nevis tikai maznodrošinātajām grupām;</li>
-                <li>Stambulas konvencija <b>nav</b> jāratificē.</li>
+                <li>Heteroseksuālajiem pāriem <b>ir</b> jābūt plašākām tiesībām nekā viendzimuma pāriem;</li>
+                <li>Latvijai <b>nav</b> jāratificē Stambulas konvencija (par vardarbības pret sievietēm un vardarbības ģimenē novēršanu un apkarošanu);</li>
+                <li>Latvijai <b>nav</b> svarīgi spēcināt Eiropas Savienību ar jaunām funkcijām (pienākumiem) un lielāku budžetu;</li>      
+                <li>Satversmes tiesas spriedumi <b>nav</b> jāpilda, ja deputāti un daļa sabiedrības tiem nepiekrīt;</li>
+                <li>Latvijā <b>vajadzētu</b> krimināli vai administratīvi sodīt par marihuānas lietošanu;</li>
+                <li>Par pašvaldības koplietošanas infrastruktūru <b>nav</b> jāmaksā no to iedzīvotāju nodokļiem, kuri strādā attiecīgajā pašvaldībā, ja viņi dzīvo citur.</li>
             </ul>
-            Pozitīvos skaitļos redzam arī NA, AS, ZZS. Vistālāk negatīvo skaitļu virzienā ir ST un LKS, bet negatīvi skaitļi ir arī Pro un SV. JV un AP ir tuvu nullei.
+            Pozitīvos skaitļos redzam arī Gobzema partiju, NA un AS. Vistālāk negatīvo skaitļu virzienā ir PRO un LKS, bet negatīvi skaitļi ir arī ST, JV, AP. SV ir tuvu nullei.
 
             <img src="outputs/3d_saved_PC2.png" alt="View from PC2 side" 
                 style="display:block; margin:auto; width:80%; max-width:800px;">
         </p>
 
-        <p><b>PC3</b>: Arī šo asi ietekmē jautājumi par ļoti atšķirīgām tēmām. Daļa svarīgo jautājumu skar krievvalodīgu un nepilsoņu tiesības, taču relatīvi liels svars ir arī jautājumiem par mācību gada ilgumu, marihuānas sodāmību un to, vai ātra lēmumu pieņemšana atspēko procesa slepenību. </p>
-        <ul>
+        <p><b>PC3</b>: Šo asi ietekmē raibs jautājumu spektrs. Daļa svarīgo jautājumu skar nepilsoņu tiesības un valsts attieksmi pret krieviju, taču relatīvi liels svars ir arī jautājumiem par dzimumu līdztiesību, eitanāziju, marihuānas lietotāju sodāmību. </p>
 
-        Pozitīvo skaitļu (PRO, AP) virzienu visvairāk veicina šādas idejas:
-                <li>Mācību gads <b>ir</b> jāpagarina, saīsinot vasaras brīvlaiku;</li>
-                <li>Lai informētu krievvalodīgos seniorus par vakcināciju pret Covid-19, valsts iestādēm <b>ir</b> pieļaujami viņiem aizsūtīt informāciju (vēstuli, e-pastu) krievu valodā;</li>
-                <li>Labāk, lai valstij svarīgi lēmumi tiek pieņemti <b>lēni, bet atklāti</b>, nevis slepeni, bet ātri;</li>
-                <li>Latvijā <b>nevajadzētu</b> krimināli vai administratīvi sodīt par marihuānas lietošanu;</li>
+        Pozitīvo skaitļu (Gobzema partija, LPV, AP) virzienu visvairāk veicina šādas idejas:
+        <ul>
+                <li>Latvijā <b>nav</b> vajadzīgas "sarkanās līnijas" valdības koalīciju veidošanā (partiju atteikšanās sadarboties ar kādām citām partijām);</li>
+                <li>Valstij <b>ir</b> jāpublicē to iestāžu, uzņēmumu, organizāciju nosaukumi, kur sievietēm par līdzīgu darbu tiek maksāta ievērojami zemāka atlīdzība nekā vīriešiem;</li>
+                <li>Latvijai <b>ir</b> jāsniedz patvērums cilvēkiem, kuri politisko iemeslu dēļ tiek vajāti Krievijā un Baltkrievijā;</li>
                 <li>Pašvaldības ikdienas darbā (piemēram, iedzīvotāju konsultatīvajās padomēs, sabiedriskajās apspriedēs, līdzdalības budžeta veidošanā) <b>ir</b> jāiesaista visi vietējie iedzīvotāji, ne tikai Latvijas pilsoņi;</li>
-                <li>Latvijai <b>ir</b> svarīgi spēcināt Eiropas Savienību ar jaunām funkcijām (pienākumiem) un lielāku budžetu;</li>
-                <li>Arī cilvēks, kuram abi vecāki ir etniskie krievi, <b>drīkst</b> sevi uzskatīt par latvieti;</li>
-                <li>Ar īpašiem atbalsta pasākumiem (piemēram, kvotām) <b>ir</b> jāveicina, lai Latvijas valsts pārvaldē strādātu vairāk mazākumtautību pārstāvju;</li>
-                <li>Latvijā <b>ir</b> vajadzīga sabiedriskā televīzija arī krievu valodā;</li>
-                <li>Katram ienākuma nodokļa maksātājam <b>ir</b> jābūt tiesībām 1% no sava iemaksātā iedzīvotāju ienākuma nodokļa novirzīt jebkurai sabiedriskā labuma organizācijai (biedrībām, nodibinājumiem, kuri veic sabiedriski svarīgus darbus).</li>
+                <li>Latvijā <b>ir</b> jāatļauj eitanāzija kā brīvprātīga izvēle neārstējami slimiem pacientiem;</li>
+                <li>Latvijā <b>nevajadzētu</b> krimināli vai administratīvi sodīt par marihuānas lietošanu;</li>
+                <li>Skolēniem skolās <b>ir</b> jāapgūst ieroču lietošanas prasmes;</li>
+                <li><b>Nav</b> jāsamazina pret Krieviju un Baltkrieviju noteiktās sankcijas.</li>         
             </ul>
-            Pozitīvos skaitļos redzam arī LKS, JV, LPV, Gobzema partiju un Konservatīvos. Vistālāk negatīvo skaitļu virzienā ir ZZS un NA, bet negatīvi skaitļi ir arī ST, AS un SV. Jāatzīmē, ka atšķirības LPV, KK un Konservatīvo skaitļos uz šīs ass ir ieviestas mākslīgi, lai šīs partijas varētu redzēt kā trīs atsevišķus punktus; visu triju rezultāts uz PC3 ass bija ~1.43.              </p>
+        Pozitīvos skaitļos redzam arī Progresīvos. Vistālāk negatīvo skaitļu virzienā ir ST un NA, bet negatīvi skaitļi ir arī Konservatīvajiem un SV. Tuvu nullei negatīvajā pusē ir ZZS un AS, savukārt tuvu nullei pozitīvajā pusē ir JV un LKS.</p>
     </div>
     </body>
 </html>
 """
-with open("app.html", "w", encoding="utf-8") as f:
+with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_content)

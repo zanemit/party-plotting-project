@@ -14,8 +14,6 @@ def perform_pca(df_encoded, n_components=3, random_seed=42):
     # handle duplicates for plotting
     df_rounded = pca_df.round(10)
     duplicates_mask = df_rounded.duplicated(keep=False)
-    np.random.seed(random_seed)
-    pca_df.loc[duplicates_mask, 'PC3'] += np.array([-0.3,0,0.3])
     
     # loadings
     loadings = pd.DataFrame(

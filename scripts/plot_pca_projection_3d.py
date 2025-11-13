@@ -1,7 +1,7 @@
 import plotly.express as px
 
 def plot_pca_3d(pca_df, variance_ratios, clr_dict, index_labels, 
-                camera_view=dict(x=0.5, y=2, z=1), output_html=False,
+                camera_view=dict(x=1, y=2, z=1.5), output_html=False,
                 output_png=False, PC_in_view=None):
     variance_ratios = variance_ratios
     fig = px.scatter_3d(

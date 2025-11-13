@@ -1,26 +1,51 @@
+"""
+`partiju_skirotava.json` comes from https://www.lsm.lv/?rt=velesanas22/sorting&ac=init
+(Network -> Fetch/XHR -> ?rt=velesanas... Copy response)
+"""
+import json
 import pandas as pd
 import os
 
-def load_and_clean_data(folder):
-    dfs = []
-    for file in os.listdir(folder):
-        df = pd.read_excel(os.path.join(folder, file), header=None)
-        df = df.dropna().reset_index(drop=True)
-        new_df = pd.DataFrame(
-            df.loc[1::2].values,
-            index=df.loc[::2].values.ravel(),
-            columns=[file.split('_')[-1].split('.')[0]]
-        )
-        dfs.append(new_df)
-    combined_df = pd.concat(dfs, axis=1)
-    return combined_df
+def load_and_clean_data(config):
+    # fetch the parties defined in config
+    defined_parties = list(config['colours'].keys())
 
-def encode_answers(df):
-    encoding_dict = {
-        'Partijas atbilde:\xa0pilnībā nepiekrītu': 0,
-        'Partijas atbilde:\xa0daļēji piekrītu': 3,
-        'Partijas atbilde:\xa0daļēji nepiekrītu': 1,
-        'Partijas atbilde:\xa0pilnībā piekrītu': 4,
-        'Partijas atbilde:\xa0gan piekrītu, gan nepiekrītu': 2
-    }
-    return df.apply(lambda col: col.map(encoding_dict)).T
+    # load the data file
+    with open(config['data']['SOURCE_DATA_PATH'], 'r') as file:
+        data = json.load(file)
+
+    party_dict = data['parties']
+    question_dict = data['questions']
+
+    questions = []
+    for row in question_dict:
+        questions.append(row['question'])
+
+    answer_dict = {}
+    for row in party_dict:
+        party_options = [p for p in defined_parties if row['id'] in p or p in row['id']]
+        if len(party_options)>0:
+            party = party_options[0]
+            print(f"{row['id']} >>>> {party}")
+        else:
+            print(f"NOT IN CONFIG: {row['id']}")
+            continue
+        
+        answers = row['answers']
+        if answers is not None:
+            answer_dict[party] = list(answers.values())
+        else:
+            print(f"{party} has not answered!")
+
+    # save parties' answers
+    final_df = pd.DataFrame(answer_dict).T-1
+    final_df.columns = questions
+
+    # save questions if the manually supplemented topic-mapping file does not exist
+    if not os.path.exists(config['data']['TOPIC_MAPPING_PATH']):
+        question_df = pd.DataFrame(questions, columns=['jautājums'])
+        question_df['tēma'] = pd.NA
+        question_df.to_excel(config['data']['TOPIC_MAPPING_PATH'], index=False)
+        print(f"Go to {config['data']['TOPIC_MAPPING_PATH']} and and topics!")
+
+    return final_df

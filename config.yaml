@@ -1,7 +1,7 @@
 # define paths
 data:
-    DATA_FOLDER : "source_data"
-    TOPIC_MAPPING_PATH: "topic_mapping.xlsx"
+    SOURCE_DATA_PATH: "source_data/partiju_skirotava.json"
+    TOPIC_MAPPING_PATH: "source_data/topic_mapping.xlsx"
     
 
 outputs:
@@ -9,17 +9,17 @@ outputs:
     OUTPUT_FOLDER_PATH : "outputs"
 
 colours:
-    JV: "#7ebc5e"
-    NA: "#e4b919"
-    LPV: "#9c454e"
-    PRO: "#d45c4f"
-    ZZS: "#319957"
-    AS: "#e6991c"
-    SV: "#7274a7"
-    ST: "#e07d14"
-    S: "#e5000b"
-    AP: "#ebdf17"
-    LKS: "#e631c2"
-    KK: "#2aa28f"
-    R: "#b3b3b3"
-    K: "#404464"
+    jauna-vienotiba: "#7ebc5e"
+    nacionala-apvieniba: "#e4b919"
+    latvija-pirmaja-vieta: "#9c454e"
+    progresivie: "#d45c4f"
+    zalo-un-zemnieku-savieniba: "#319957"
+    apvienotais-saraksts: "#e6991c"
+    suverena-vara: "#7274a7"
+    stabilitatei: "#e07d14"
+    saskana: "#e5000b"
+    attistibai-par: "#ebdf17"
+    latvijas-krievu-savieniba: "#e631c2"
+    katram-un-katrai: "#2aa28f"
+    republika: "#b3b3b3"
+    konservativie: "#404464"
