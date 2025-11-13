@@ -45,7 +45,6 @@ html_content = f"""
 </head>
     <body>
     <div style="width: 60%; margin: auto;">
-        <p><b>NB:</b> 12/11/2025 optimizējot datu izguves procesu no lsm.lv, atklāta kļūda sākotnēji izmantotajos partijas "Konservatīvie" datos. Pēc kļūdas labojuma pirmās trīs galveno komponentu asis izskaidro 59% variācijas, un partijas "Konservatīvie" atbilžu projekcija šajās asīs ir tuvāka AS, ZZS, NA, nevis LPV, KK.</p>
         <h1>Partiju atbildes 2022.gada partiju šķirotavā</h1>
         <p>No 19 partijām, kas kandidēja 2022.gada vēlēšanās, uz LSM.lv sagatavotajiem 58 jautājumiem atbildēja 13 partijas.<br>Zemāk atainota partiju atbilžu projekcija pirmo trīs galveno komponentu (<i>principal component</i>, "PC") asīs, kas kopīgi paskaidro 59% no variācijas partiju atbildēs.</p>
         
