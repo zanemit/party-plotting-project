@@ -1,8 +1,21 @@
 # define paths
 data:
+    YEARS: [2022,2026]
     SOURCE_DATA_PATH: "source_data/partiju_skirotava.json"
     TOPIC_MAPPING_PATH: "source_data/topic_mapping.xlsx"
     
+metadata:
+    TOTAL_NUM_PARTIES:
+        2022: 19
+        2026: 14
+
+proximity_plot:
+    2022: 
+        dimensions: 6
+        reference_party: apvienotais-saraksts
+    2026: 
+        dimensions: 6
+        reference_party: apvienotais-saraksts
 
 outputs:
     3D_PLOT_PATH : "outputs/pca_projection_3d.html"
@@ -18,8 +31,12 @@ colours:
     suverena-vara: "#7274a7"
     stabilitatei: "#e07d14"
     saskana: "#e5000b"
+    latvijas-attistibai: "#ebdf17"
     attistibai-par: "#ebdf17"
-    latvijas-krievu-savieniba: "#e631c2"
+    mes-mainam-noteikumus: "#e631c2"
+    republika: "#e631c2"
+    gobzema-saraksts: "#2aa28f"
     katram-un-katrai: "#2aa28f"
-    republika: "#b3b3b3"
+    austosa-saule-latvijai: "#b3b3b3"
+    jkp-jauna-konservativa-partija: "#404464"
     konservativie: "#404464"

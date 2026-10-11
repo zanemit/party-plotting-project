@@ -12,7 +12,7 @@ def pc_loading_heatmap(loadings, loading_colnames):
     loadings_T = loadings_T.loc[loadings_T.index[::-1],:]
 
     # Mask for "strong" loadings
-    mask = (loadings_T > 0.2) | (loadings_T < -0.2)
+    mask = (loadings_T > 0.7) | (loadings_T < -0.7)
 
     # Prepare hover text with optional stars
     hover_text = round(loadings_T.copy(),3).astype(str)
@@ -37,9 +37,9 @@ def pc_loading_heatmap(loadings, loading_colnames):
     )
 
     fig.update_layout(
-        width=1200,
+        width=23*loadings_T.shape[1],
         height=600,
-        xaxis_title="Jautājuma tēma",
+        # xaxis_title="Jautājuma tēma",
         yaxis_title="Galvenās komponentes"
     )
 
