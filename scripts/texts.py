@@ -79,7 +79,7 @@ TEXTS = {
             "after-plot": """Pozitīvo skaitļu (MMN, JKP, LA) virzienu visvairāk veicina šādas idejas:
                 <ul>
                         <li>Ja ir ievērotas visas vides un drošības prasības, valstij <b>jābūt tiesībām</b> pieņemt galīgo lēmumu par stratēģiski nozīmīgu vēja parku būvniecību arī tad, ja pašvaldība vai vietējie iedzīvotāji iebilst;</li>
-                        <li>Valsts aizsardzības dienesta atlasei <b>nav jāpakļauj</n> gan vīrieši, gan sievietes;</li>
+                        <li>Valsts aizsardzības dienesta atlasei <b>nav jāpakļauj</b> gan vīrieši, gan sievietes;</li>
                         <li>Rīgai un Pierīgai vairāk no saviem ieņēmumiem <b>ir jāatstāj</b> savai attīstībai, nevis citu pašvaldību atbalstam.;</li>
                         <li>Mazākās pensijas <b>ir jāpalielina</b> prioritāri, pat ja tādēļ pensijas apmērs mazāk būs atkarīgs no cilvēka veiktajām sociālajām iemaksām.</li>        
                     </ul>

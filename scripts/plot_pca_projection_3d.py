@@ -32,7 +32,8 @@ def plot_pca_3d(pca_df, variance_ratios, clr_dict, index_labels,
             xanchor='left',  # how x is interpreted (relative to left edge)
             bgcolor='rgba(255,255,255,0.6)',  # optional: semi-transparent background
             bordercolor='black',
-            borderwidth=1
+            borderwidth=1,
+            title='Partija'
         ),
         height=500
     )
