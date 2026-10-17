@@ -47,41 +47,48 @@ TEXTS = {
     },
     2026: {
         "PC1": {
-                    "before-plot": "Šo asi ietekmē ļoti raibs jautājumu spektrs, bet visvairāk -- atbildes uz jautājumiem par (1) vecāku tiesībām lemt par tālmācību arī sākumskolas līmenī, (2) tirdzniecību ar agresorvalstīm, (3) tautas tiesībām vēlēt prezidentu, (4) atbalstu AirBaltic, (5) minimālās un vidējās algas relatīvo pieaugumu, kā arī (6) attieksmi pret iespējām priekšlaicīgi izņemt daļu no pensiju 2.līmeņa uzkrājuma.",
+                    "before-plot": "Šo asi ietekmē ļoti raibs jautājumu spektrs, bet visvairāk -- atbildes uz jautājumiem par (1) vecāku tiesībām lemt par tālmācību arī sākumskolas līmenī, (2) tautas tiesībām vēlēt prezidentu, (3) minimālās un vidējās algas relatīvo pieaugumu, (4) valsts atbalstu AirBaltic, kā arī (5) tirdzniecību ar agresorvalstīm.",
                     
-                    "after-plot": """Pozitīvo skaitļu (SV/AJ, St!, LPV) virzienu visvairāk veicina šādas idejas:
+                    "after-plot": """Pozitīvo skaitļu (SV/AJ, St!, LPV) virzienu visvairāk veicina šādas idejas (secīgi norādīti apgalvojumi, kuru korelācijas koeficients ar ass virzienu pārsniedz 0.8):
                         <ul>
-                            <li>Vecākiem <b>ir jābūt tiesībām</b> pēc savas izvēles bērnam sākumskolas klasēs izvēlēties tālmācību vai mācības ģimenē.;</li>
-                            <li>Latvijai <b>nav pilnībā jāpārtrauc</b> tirdzniecība ar Krieviju un Baltkrieviju;</li>
-                            <li>Latvijas Valsts prezidents <b>būtu jāievēl</b> tautai;</li>
-                            <li>Valstij <b>nav jābūt gatavai</b> arī turpmāk ieguldīt lidsabiedrībā airBaltic.;</li>
-                            <li>Minimālajai algai Latvijā <b>ir jāaug straujāk</b> nekā vidējai darba algai;</li>
-                            <li>Iedzīvotājiem <b>ir jāļauj</b> daļu no pensiju 2. līmeņa uzkrājuma izņemt pirms pensionēšanās.</li>
+                            <li> Vecākiem <b>ir jābūt tiesībām</b> pēc savas izvēles bērnam sākumskolas klasēs izvēlēties tālmācību vai mācības ģimenē.;</li>
+                            <li> Latvijas Valsts prezidents <b>būtu jāievēl</b> tautai;</li>
+                            <li> Minimālajai algai Latvijā <b>ir jāaug straujāk</b> nekā vidējai darba algai;</li>
+                            <li> Valstij <b>nav jābūt gatavai</b> arī turpmāk ieguldīt lidsabiedrībā airBaltic.;</li>
+                            <li> Latvijai <b>nav pilnībā jāpārtrauc</b> tirdzniecība ar Krieviju un Baltkrieviju;</li>
+                            <li> Skolās lielāks uzsvars <b>jāliek</b> uz pamatzināšanu apguvi, atgriežoties pie iepriekšējās mācību pieejas, nevis turpinot “Skola2030” kompetenču un praktisko prasmju attīstīšanu.</li>
+                            <li> Latvijai <b>vajadzētu turpināt</b> dzelzceļa līnijas “Rail Baltica” būvniecību par valsts budžeta līdzekļiem, ja projektam nepietiek Eiropas Savienības finansējuma</li>
+                            <li> Daļa aizsardzības finansējuma <b>nav</b> jānovirza nevis militārām vajadzībām, bet civilajai aizsardzībai, piemēram, patvertņu ātrākai izbūvei un iedzīvotāju gatavībai krīzēm.</li>
+                            <li> Latvijas augstskolām <b>jāaizliedz</b> uzņemt studentus no valstīm ārpus Eiropas Savienības un NATO, pat ja tas samazina augstskolu ieņēmumus</li>
+                            <li> Latvijā <b>vajadzētu</b> krimināli vai administratīvi sodīt par marihuānas lietošanu.</li>
+                            <li> Skolās visiem bērniem <b>nav jāapgūst</b> zināšanas par ķermeni, partnerattiecībām un reproduktīvo veselību arī tad, ja daļa vecāku pret to iebilst</li>
+                            <li> Latvijai <b>jāsaglabā</b> dalība Stambulas konvencijā par vardarbības pret sievietēm un vardarbības ģimenē novēršanu.</li>
+                            <li> Valstij <b>jānovirza</b> ievērojami vairāk līdzekļu Latgales attīstībai, pat ja tādēļ mazāk naudas paliek citu Latvijas reģionu attīstībai.</li>
                         </ul>
                         Vispretējākos viedokļus šiem paudušas JV, PRO, LA.""" 
                     },
         "PC2": {
-            "before-plot": "Šo asi visvairāk ietekmē jautājumi par (1) virsstundu darba apmaksu, (2) lauku skolām, (3) nerentablu sabiedriskā transporta reisu aizvietošanu ar pasūtījuma reisiem, (4) ministru iespējām atlaist ierēdņus, kā arī (5) sabiedriskā medija saturu krievu valodā.",
+            "before-plot": "Šo asi visvairāk ietekmē jautājumi par (1) virsstundu darba apmaksu, (2) lauku skolām, (3) nerentablu sabiedriskā transporta reisu aizvietošanu ar pasūtījuma reisiem, (4) sabiedriskā medija saturu krievu valodā, (5) ministru iespējām nomainīt ministriju vadošos ierēdņus, kā arī (6) īres mājokļu pieejamību.",
 
             "after-plot": """Pozitīvo skaitļu (Saskaņa, St!, PRO) virzienu visvairāk veicina šādas idejas:
                 <ul>
-                    <li>Likumā noteiktā piemaksa par virsstundu darbu <b>ir jāsamazina</b> no 100% līdz 50% no stundas algas likmes;</li>
-                    <li>Valstij <b>ir jāturpina</b> finansēt lauku skolas ar ļoti mazu skolēnu skaitu;</li>
-                    <li>Mazapdzīvotās vietās regulāri nerentabli sabiedriskā transporta reisi <b>būtu jāaizstāj</b> ar individuāliem transporta risinājumiem pēc pieprasījuma;</li>   
-                    <li>Ministriem <b>nebūtu jābūt</b> iespējai vieglāk nomainīt ministriju vadošos ierēdņus, pat ja tas mazina civildienesta neatkarību no politiskās varas.</li>   
-                    <li>Sabiedriskajam medijam <b>būtu jāveido</b> ziņu saturs arī krievu valodā.</li>
+                    <li> Likumā noteiktā piemaksa par virsstundu darbu <b>ir jāsamazina</b> no 100% līdz 50% no stundas algas likmes;</li>
+                    <li> Valstij <b>ir jāturpina</b> finansēt lauku skolas ar ļoti mazu skolēnu skaitu;</li>
+                    <li> Mazapdzīvotās vietās regulāri nerentabli sabiedriskā transporta reisi <b>būtu jāaizstāj</b> ar individuāliem transporta risinājumiem pēc pieprasījuma;</li>   
+                    <li> Sabiedriskajam medijam <b>būtu jāveido</b> ziņu saturs arī krievu valodā.</li>
+                    <li> Ministriem <b>nebūtu jābūt</b> iespējai vieglāk nomainīt ministriju vadošos ierēdņus, pat ja tas mazina civildienesta neatkarību no politiskās varas.</li>   
+                    <li> Valstij mājokļu politikā priekšroka <b>ir jādod</b> pieejamu īres mājokļu veidošanai, nevis valsts garantijām mājokļa iegādei.</li>
                 </ul>
                 Vispretējākās nostājas ir MMN (ar atrāvienu), ASL, arī JKP un AS.""", 
             },
         "PC3": {
-            "before-plot": "Šo asi visvairāk ietekmē jautājumi par (1) vēja parku attīstību, (2) sieviešu lomu valsts aizsardzības dienestā, (3) ienākumu sadalījumu starp pašvaldībām, (4) pensiju nevienlīdzību.",
+            "before-plot": "Šo asi visvairāk ietekmē jautājumi par (1) vēja parku attīstību, (2) sieviešu dalību valsts aizsardzības dienestā un (3) ienākumu sadalījumu starp pašvaldībām.",
 
             "after-plot": """Pozitīvo skaitļu (MMN, JKP, LA) virzienu visvairāk veicina šādas idejas:
                 <ul>
-                        <li>Ja ir ievērotas visas vides un drošības prasības, valstij <b>jābūt tiesībām</b> pieņemt galīgo lēmumu par stratēģiski nozīmīgu vēja parku būvniecību arī tad, ja pašvaldība vai vietējie iedzīvotāji iebilst;</li>
-                        <li>Valsts aizsardzības dienesta atlasei <b>nav jāpakļauj</b> gan vīrieši, gan sievietes;</li>
-                        <li>Rīgai un Pierīgai vairāk no saviem ieņēmumiem <b>ir jāatstāj</b> savai attīstībai, nevis citu pašvaldību atbalstam.;</li>
-                        <li>Mazākās pensijas <b>ir jāpalielina</b> prioritāri, pat ja tādēļ pensijas apmērs mazāk būs atkarīgs no cilvēka veiktajām sociālajām iemaksām.</li>        
+                        <li> Ja ir ievērotas visas vides un drošības prasības, valstij <b>jābūt tiesībām</b> pieņemt galīgo lēmumu par stratēģiski nozīmīgu vēja parku būvniecību arī tad, ja pašvaldība vai vietējie iedzīvotāji iebilst;</li>
+                        <li> Valsts aizsardzības dienesta atlasei <b>nav jāpakļauj</b> gan vīrieši, gan sievietes;</li>
+                        <li> Rīgai un Pierīgai vairāk no saviem ieņēmumiem <b>ir jāatstāj</b> savai attīstībai, nevis citu pašvaldību atbalstam.;</li>      
                     </ul>
                 Vispretējākos viedokļus paudušas ZZS, NA, ASL.""",
         },

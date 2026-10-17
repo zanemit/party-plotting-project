@@ -25,7 +25,7 @@ for year, df_encoded in zip(config['data']['YEARS'], df_encoded_list):
     topic_table = pd.read_excel(topping_mapping_path)
     if topic_table['tēma'].isna().sum()==0: # does not contain nans
         mapping = dict(zip(topic_table['jautājums'], topic_table['tēma']))
-        df_encoded = df_encoded.rename(columns=mapping)
+        df_encoded = df_encoded[topic_table['jautājums']].rename(columns=mapping)
 
     # PCA
     pca_df, loadings, variance_ratios = perform_pca(df_encoded)
@@ -99,7 +99,7 @@ for year, df_encoded in zip(config['data']['YEARS'], df_encoded_list):
             
             <p>Katru no šīm trim galveno komponentu asīm lielākā vai mazākā mērā ietekmē liels skaits šķirotavas jautājumu, tāpēc šo asu nozīmi nav viegli interpretēt.</p>
             
-            <p>Zemāk atainots katra šķirotavas jautājuma korelācijas koeficients ar attiecīgo asi. Jo lielāks koeficients (pozitīvs vai negatīvs), jo lielāka ietekme uz konkrēto asi. Pozitīvs koeficients nozīmē, ka pozitīva atbilde ("pilnībā piekrītu" vai "daļēji piekrītu") uz jautājumu augstāk esošajā 3D grafikā (vai zemāk esošajos 1D grafikos) virza partijas projekciju uz attiecīgās ass pozitīvo skaitļu virzienā. Taču, tā kā katru asi ietekmē liels jautājumu skaits, tas, ka kādas partijas atbilžu projekcijai ir izteikti pozitīva vērtība, nenozīmē, ka partija uz *visiem* šo asi būtiski ietekmējošajiem jautājumiem ir bijusi piekrītoša.</p>
+            <p>Zemāk atainots katra šķirotavas jautājuma korelācijas koeficients ar attiecīgo asi. Jo lielāks koeficients (pozitīvs vai negatīvs), jo lielāka ietekme uz konkrēto asi. Pozitīvs koeficients nozīmē, ka pozitīva atbilde ("pilnībā piekrītu" vai "daļēji piekrītu") uz jautājumu augstāk esošajā 3D grafikā (vai zemāk esošajos 1D grafikos) virza partijas projekciju uz attiecīgās ass pozitīvo skaitļu virzienā. Taču, tā kā katru asi ietekmē liels jautājumu skaits, tas, ka kādas partijas atbilžu projekcijai ir izteikti pozitīva vērtība, nenozīmē, ka partija bijusi piekrītoša *visiem* šo asi būtiski ietekmējošajiem apgalvojumiem.</p>
 
             <!-- Heatmap -->
             <div style="width: 80%; max-width: 1200px; margin-left: -30%;">
